@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.fxml.FXMLLoader?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.jdmedia.controller.MainController">
+
+    <top>
+
+        <fx:include source="header-view.fxml"/>
+
+    </top>
+
+    <center>
+
+        <StackPane fx:id="contentPane"/>
+
+    </center>
+
+    <bottom>
+
+        <fx:include source="statusbar-view.fxml"/>
+
+    </bottom>
+
+</BorderPane>

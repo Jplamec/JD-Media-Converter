@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" fx:controller="com.jdmedia.controller.HomeController" styleClass="content-view"><HBox fx:id="cardsContainer" alignment="CENTER" spacing="30"/></StackPane>
