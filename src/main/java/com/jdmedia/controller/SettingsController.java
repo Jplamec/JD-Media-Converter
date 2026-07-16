@@ -16,12 +16,12 @@ public final class SettingsController {
     @FXML private void save() { AppSettings s=context.settings().get(); s.ffmpegPath=ffmpegField.getText().trim(); s.ffprobePath=ffprobeField.getText().trim(); s.moviesFolder=moviesField.getText().trim(); s.seriesFolder=seriesField.getText().trim(); s.moviesOutputFolder=moviesOutputField.getText().trim(); s.seriesOutputFolder=seriesOutputField.getText().trim(); context.settings().save(); checkFfmpeg(); context.status().info("Configuración guardada."); }
     @FXML private void checkFfmpeg() { boolean ready=context.ffmpegInstallation().isAvailable(context.settings().get()); ffmpegStatus.setText(ready ? "✓ FFmpeg y FFprobe están listos para usar" : "FFmpeg no está disponible todavía"); ffmpegStatus.getStyleClass().setAll(ready ? "ffmpeg-ready" : "ffmpeg-missing"); }
     @FXML private void installFfmpeg() {
-        Alert prompt=new Alert(Alert.AlertType.CONFIRMATION,"Se descargará FFmpeg Essentials para Windows en tools/ffmpeg. ¿Continuar?",ButtonType.YES,ButtonType.NO);
+        Alert prompt=new Alert(Alert.AlertType.CONFIRMATION,"Se descargará FFmpeg Essentials para Windows en la carpeta de usuario. ¿Continuar?",ButtonType.YES,ButtonType.NO);
         prompt.setTitle("Descargar FFmpeg"); prompt.setHeaderText("Instalación de FFmpeg"); if(prompt.showAndWait().orElse(ButtonType.NO)!=ButtonType.YES) return;
         Task<Void> task=new Task<>() { @Override protected Void call() throws Exception { context.ffmpegInstallation().install(context.settings().get(), value -> updateProgress(value, 1)); context.settings().save(); return null; } };
         context.ffmpegInstallation().beginDownload();
         task.progressProperty().addListener((o,oldValue,newValue) -> { context.ffmpegInstallation().updateDownload(newValue.doubleValue()); context.status().progress(context.ffmpegInstallation().downloadMessageProperty().get(), newValue.doubleValue()); });
-        task.setOnSucceeded(event -> { context.ffmpegInstallation().finishDownload("FFmpeg instalado en tools/ffmpeg/bin"); load(); checkFfmpeg(); context.status().clearProgress(); context.status().info("FFmpeg instalado correctamente."); });
+        task.setOnSucceeded(event -> { context.ffmpegInstallation().finishDownload("FFmpeg instalado en la carpeta de usuario"); load(); checkFfmpeg(); context.status().clearProgress(); context.status().info("FFmpeg instalado correctamente."); });
         task.setOnFailed(event -> { String error="Error al descargar FFmpeg: " + task.getException().getMessage(); context.ffmpegInstallation().failDownload(error); context.status().clearProgress(); context.status().error(error); });
         new Thread(task,"ffmpeg-installer").start();
     }

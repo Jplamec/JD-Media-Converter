@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" fx:controller="com.jdmedia.controller.HistoryController" spacing="14" styleClass="content-view"><padding><Insets top="25" right="45" bottom="25" left="45"/></padding><children><Label text="Historial de conversiones" styleClass="view-title"/><TableView fx:id="table" styleClass="history-table" VBox.vgrow="ALWAYS"><columns><TableColumn fx:id="dateColumn" text="Fecha" prefWidth="165"/><TableColumn fx:id="sourceColumn" text="Archivo" prefWidth="385"/><TableColumn fx:id="resultColumn" text="Resultado" prefWidth="190"/><TableColumn fx:id="pathColumn" text="Ruta" prefWidth="150"/></columns></TableView><Button text="Volver al inicio" onAction="#home"/></children></VBox>

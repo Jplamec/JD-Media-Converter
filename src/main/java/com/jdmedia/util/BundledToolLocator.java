@@ -10,7 +10,11 @@ public final class BundledToolLocator {
     public static String ffprobe() { return locate("ffprobe"); }
     private static String locate(String name) {
         String executable = System.getProperty("os.name").toLowerCase().contains("win") ? name + ".exe" : name;
-        Path bundled = Path.of("tools", "ffmpeg", "bin", executable).toAbsolutePath();
-        return Files.isRegularFile(bundled) ? bundled.toString() : name;
+        Path relativeBundled = Path.of("tools", "ffmpeg", "bin", executable).toAbsolutePath();
+        if (Files.isRegularFile(relativeBundled)) {
+            return relativeBundled.toString();
+        }
+        Path homeBundled = Path.of(System.getProperty("user.home"), ".jd-media-converter", "tools", "ffmpeg", "bin", executable).toAbsolutePath();
+        return Files.isRegularFile(homeBundled) ? homeBundled.toString() : name;
     }
 }

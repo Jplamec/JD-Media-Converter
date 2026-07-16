@@ -20,7 +20,7 @@ public final class MainController {
         Task<Void> task = new Task<>() { @Override protected Void call() throws Exception { updateMessage("Descargando FFmpeg…"); context.ffmpegInstallation().install(context.settings().get(), value -> updateProgress(value, 1)); context.settings().save(); return null; } };
         context.ffmpegInstallation().beginDownload();
         task.progressProperty().addListener((observable, oldValue, value) -> { context.ffmpegInstallation().updateDownload(value.doubleValue()); context.status().progress(context.ffmpegInstallation().downloadMessageProperty().get(), value.doubleValue()); });
-        task.setOnSucceeded(event -> { context.ffmpegInstallation().finishDownload("FFmpeg instalado en tools/ffmpeg/bin"); context.status().clearProgress(); context.status().info("FFmpeg se ha instalado correctamente."); });
+        task.setOnSucceeded(event -> { context.ffmpegInstallation().finishDownload("FFmpeg instalado en la carpeta de usuario"); context.status().clearProgress(); context.status().info("FFmpeg se ha instalado correctamente."); });
         task.setOnFailed(event -> { String error="Error al descargar FFmpeg: " + task.getException().getMessage(); context.ffmpegInstallation().failDownload(error); context.status().clearProgress(); context.status().error(error); });
         context.status().progress("Descargando FFmpeg: 0 %", 0); new Thread(task, "ffmpeg-installer").start();
     }
