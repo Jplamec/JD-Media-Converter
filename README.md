@@ -1,33 +1,47 @@
 # 🎬 JD Media Converter
 
-**JD Media Converter** es una aplicación de escritorio desarrollada en **Java 25** y **JavaFX** para analizar, optimizar y convertir bibliotecas multimedia destinadas a servidores como **Jellyfin**, **Plex** y **Emby**.
+**JD Media Converter** is a desktop application developed in **Java 25** and **JavaFX** to analyze, optimize, and convert media libraries for servers like **Jellyfin**, **Plex**, and **Emby**.
 
-Su objetivo es automatizar la conversión de películas y series mediante una interfaz gráfica sencilla, utilizando **FFmpeg** y **FFprobe** como motor de análisis y conversión.
-
----
-
-# ✨ Características
-
-- 📂 Exploración recursiva de bibliotecas de películas y series.
-- 🎥 Análisis completo mediante **FFprobe**:
-  - Resolución
-  - Códec de vídeo
-  - Códec de audio
-  - Duración
-  - Bitrate
-  - Idiomas
-  - Subtítulos
-- 🔊 Selección de una única pista de audio para cada conversión.
-- 📝 Gestión de subtítulos (mantener o eliminar).
-- 🔄 Conversión a **MP4 (H.264 + AAC)** utilizando FFmpeg.
-- ⚙️ Calidad y velocidad de conversión configurables.
-- ⏹️ Cancelación de conversiones en curso.
-- 💾 Configuración persistente mediante JSON.
-- 🗄️ Historial de conversiones almacenado en SQLite.
+Its goal is to automate the conversion of movies and TV shows through a simple graphical interface, using **FFmpeg** and **FFprobe** as the analysis and conversion engine.
 
 ---
 
-# 🖥️ Tecnologías utilizadas
+# ✨ Features
+
+- 📂 Recursive scanning of movie and TV show libraries.
+
+- 🎥 Comprehensive analysis using **FFprobe**:
+
+- Resolution
+
+- Video codec
+
+- Audio codec
+
+- Duration
+
+- Bitrate
+
+- Languages
+
+- Subtitles
+- 🔊 Selection of a single audio track for each conversion.
+
+- 📝 Subtitle management (keep or delete).
+
+- 🔄 Conversion to **MP4 (H.264 + AAC)** using FFmpeg.
+
+⚙️ Configurable conversion quality and speed.
+
+⏹️ Cancellation of ongoing conversions.
+
+💾 Persistent configuration using JSON.
+
+🗄️ Conversion history stored in SQLite.
+
+---
+
+# 🖥️ Technologies used
 
 - Java 25
 - JavaFX
@@ -39,20 +53,20 @@ Su objetivo es automatizar la conversión de películas y series mediante una in
 
 ---
 
-# 📦 Requisitos
+# 📦 Requirements
 
-Para ejecutar el proyecto desde el código fuente se necesita:
+To run the project from source code, you need:
 
 - JDK 25
-- Maven 3.9 o superior
+- Maven 3.9 or higher
 
-No es necesario instalar FFmpeg manualmente.
+It is not necessary to install FFmpeg manually.
 
-La aplicación incluye los ejecutables de **FFmpeg** y **FFprobe** para facilitar su uso al usuario final.
+The application includes the **FFmpeg** and **FFprobe** executables for ease of use by the end user.
 
 ---
 
-# ▶️ Ejecutar el proyecto
+# ▶️ Run the project
 
 ```bash
 mvn javafx:run
@@ -60,9 +74,9 @@ mvn javafx:run
 
 ---
 
-# 🏗️ Arquitectura
+# 🏗️ Architecture
 
-El proyecto sigue una arquitectura modular organizada por responsabilidades:
+The project follows a modular architecture organized by responsibilities:
 
 ```
 controller/
@@ -72,70 +86,78 @@ util/
 resources/
 ```
 
-- **controller** → Controladores JavaFX y navegación.
-- **service** → Lógica de negocio, FFmpeg, FFprobe, historial y configuración.
-- **model** → Objetos del dominio.
-- **util** → Utilidades comunes.
-- **resources** → Interfaces FXML, CSS, iconos y recursos.
+- **controller** → JavaFX controllers and navigation.
 
-Los controladores únicamente coordinan la interfaz.
+- **service** → Business logic, FFmpeg, FFprobe, history, and configuration.
 
-Toda la lógica de negocio se encuentra en la capa **service**.
+- **model** → Domain objects.
 
----
+- **util** → Common utilities.
 
-# 🚧 Estado del proyecto
+- **resources** → FXML interfaces, CSS, icons, and resources.
 
-Actualmente la aplicación se encuentra en desarrollo activo.
+Controllers only coordinate the interface.
 
-La primera versión incluye:
-
-- Conversión H.264 + AAC
-- Selección de audio
-- Gestión básica de subtítulos
-- Historial
-- Configuración persistente
-
-Futuras versiones añadirán:
-
-- Más perfiles de conversión
-- Reglas automáticas por idioma
-- Más formatos de salida
-- Mejor información de progreso
-- Estadísticas de conversión
+All business logic resides in the **service** layer.
 
 ---
 
-# ⚖️ Software de terceros
+# 🚧 Project Status
 
-Este proyecto utiliza **FFmpeg** , **FFprobe** y **FFplay**, desarrollados por el proyecto FFmpeg.
+The application is currently under active development.
 
-- Sitio oficial:
-  https://ffmpeg.org/
+The first version includes:
 
-Los ejecutables de FFmpeg incluidos en la aplicación mantienen su licencia original.
+- H.264 + AAC conversion
+- Audio selection
+- Basic subtitle management
+- History
+- Persistent settings
 
-JD Media Converter es una aplicación independiente que utiliza FFmpeg como herramienta externa para el análisis y conversión multimedia.
+Future versions will add:
 
-Toda la información relativa a la licencia de FFmpeg puede consultarse en:
+- More conversion profiles
+- Automatic rules per language
+- More output formats
+- Improved progress information
+- Conversion statistics
+
+---
+
+# ⚖️ Third-Party Software
+
+This project uses **FFmpeg**, **FFprobe**, and **FFplay**, developed by the FFmpeg project.
+
+- Official website:
+
+https://ffmpeg.org/
+
+The FFmpeg executables included in the application retain their original license.
+
+JD Media Converter is a standalone application that uses FFmpeg as an external tool for media analysis and conversion.
+
+All information regarding the FFmpeg license can be found at:
 
 https://ffmpeg.org/legal.html
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto está distribuido bajo la licencia **MIT**.
+This project is distributed under the **MIT** license.
 
-Consulta el archivo **LICENSE** para más información.
+See the **LICENSE** file for more information.
 
-JD Media Converter utiliza FFmpeg, FFprobe y FFplay, que mantienen sus propias licencias independientes.
+JD Media Converter uses FFmpeg, FFprobe, and FFplay, which maintain their own independent licenses.
+
 ---
 
-# 👨‍💻 Autor
+# 👨‍💻 Author
 
 **Jose David Plaza**
 
 GitHub:
+
 https://github.com/Jplamec
 
 LinkedIn:
+
 https://www.linkedin.com/in/jos%C3%A9-david-plaza-meca-67203a275
