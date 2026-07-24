@@ -1,158 +1,81 @@
-# 🎬 JD Media Converter
+# JD Media Converter
 
-**JD Media Converter** is a desktop application developed in **Java 25** and **JavaFX** to analyze, optimize, and convert media libraries for servers like **Jellyfin**, **Plex**, and **Emby**.
+JD Media Converter is a desktop application created to facilitate the conversion and optimization of movies and TV shows intended for media servers like Jellyfin, Plex, or Emby.
 
-Its goal is to automate the conversion of movies and TV shows through a simple graphical interface, using **FFmpeg** and **FFprobe** as the analysis and conversion engine.
+The idea arose from a very specific problem: having a huge media library that took up less space and could be played on virtually any device without complications.
 
----
-
-# ✨ Features
-
-- 📂 Recursive scanning of movie and TV show libraries.
-
-- 🎥 Comprehensive analysis using **FFprobe**:
-
-- Resolution
-
-- Video codec
-
-- Audio codec
-
-- Duration
-
-- Bitrate
-
-- Languages
-
-- Subtitles
-- 🔊 Selection of a single audio track for each conversion.
-
-- 📝 Subtitle management (keep or delete).
-
-- 🔄 Conversion to **MP4 (H.264 + AAC)** using FFmpeg.
-
-⚙️ Configurable conversion quality and speed.
-
-⏹️ Cancellation of ongoing conversions.
-
-💾 Persistent configuration using JSON.
-
-🗄️ Conversion history stored in SQLite.
+The goal is very simple: drag and drop your videos, choose a quality, and let the program do the rest.
 
 ---
 
-# 🖥️ Technologies used
+## What can it do?
 
-- Java 25
+
+- 🎥 Convert videos to MP4 (H.264/H.265 + AAC)
+- 📂 Automatically analyze movies and TV shows
+- 🔊 Choose which audio track to keep
+- 💬 Keep or remove subtitles
+- 🌈 Convert HDR content to SDR (optional)
+- 📦 Reduce file size while maintaining good quality
+- 📝 Save a conversion history
+- 🌍 Support for multiple languages
+- 🔄 Automatically check for new versions
+
+---
+
+## Designed for...
+
+- Jellyfin users
+- Plex users
+- Emby users
+- People who want to save space without sacrificing too much quality
+- Large media libraries
+
+---
+
+## Technologies
+
+The project is developed with:
+
+- Java
 - JavaFX
 - Maven
 - FFmpeg
-- FFprobe
 - SQLite
-- Gson
 
 ---
 
-# 📦 Requirements
+## Project Status
 
-To run the project from source code, you need:
+The project is still under development and will continue to receive new features and improvements.
 
-- JDK 25
-- Maven 3.9 or higher
-
-It is not necessary to install FFmpeg manually.
-
-The application includes the **FFmpeg** and **FFprobe** executables for ease of use by the end user.
-
----
-
-# ▶️ Run the project
-
-```bash
-mvn javafx:run
-```
-
----
-
-# 🏗️ Architecture
-
-The project follows a modular architecture organized by responsibilities:
-
-```
-controller/
-model/
-service/
-util/
-resources/
-```
-
-- **controller** → JavaFX controllers and navigation.
-
-- **service** → Business logic, FFmpeg, FFprobe, history, and configuration.
-
-- **model** → Domain objects.
-
-- **util** → Common utilities.
-
-- **resources** → FXML interfaces, CSS, icons, and resources.
-
-Controllers only coordinate the interface.
-
-All business logic resides in the **service** layer.
-
----
-
-# 🚧 Project Status
-
-The application is currently under active development.
-
-The first version includes:
-
-- H.264 + AAC conversion
-- Audio selection
-- Basic subtitle management
-- History
-- Persistent settings
-
-Future versions will add:
+Some ideas for future versions are:
 
 - More conversion profiles
-- Automatic rules per language
+- Improved subtitle management
 - More output formats
-- Improved progress information
-- Conversion statistics
+- More statistics during conversions
+- New advanced options for experienced users
 
 ---
 
-# ⚖️ Third-Party Software
+## ❤️ Thank You
 
-This project uses **FFmpeg**, **FFprobe**, and **FFplay**, developed by the FFmpeg project.
+If you test the application and find any bugs or have an idea for improvement, any suggestions are welcome.
 
-- Official website:
-
-https://ffmpeg.org/
-
-The FFmpeg executables included in the application retain their original license.
-
-JD Media Converter is a standalone application that uses FFmpeg as an external tool for media analysis and conversion.
-
-All information regarding the FFmpeg license can be found at:
-
-https://ffmpeg.org/legal.html
+---
 
 ## 📄 License
 
-This project is distributed under the **MIT** license.
+This project uses the MIT license.
 
-See the **LICENSE** file for more information.
-
-JD Media Converter uses FFmpeg, FFprobe, and FFplay, which maintain their own independent licenses.
+It also uses FFmpeg as an external tool, maintaining its original license.
 
 ---
 
-# 👨‍💻 Author
+## 👨‍💻 Author
 
-**Jose David Plaza**
+José David Plaza
 
 GitHub:
 
