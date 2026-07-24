@@ -6,7 +6,10 @@ import com.jdmedia.controller.*;
 public final class AppContext {
     private final StatusService status = new StatusService();
     private final SettingsService settings = new SettingsService();
+    private final LocalizationService localization = new LocalizationService(settings);
+    private final TaskbarProgressService taskbarProgress = new TaskbarProgressService();
     private final FfmpegInstallationService ffmpegInstallation = new FfmpegInstallationService();
+    private final UpdateService updates = new UpdateService();
     private final MediaAnalysisService analysis = new MediaAnalysisService(settings);
     private final HistoryService history = new HistoryService();
     private final ConversionService conversion = new ConversionService(settings, history);
@@ -16,7 +19,10 @@ public final class AppContext {
     public NavigationService navigation() { return navigation; }
     public StatusService status() { return status; }
     public SettingsService settings() { return settings; }
+    public LocalizationService i18n() { return localization; }
+    public TaskbarProgressService taskbarProgress() { return taskbarProgress; }
     public FfmpegInstallationService ffmpegInstallation() { return ffmpegInstallation; }
+    public UpdateService updates() { return updates; }
     public MediaAnalysisService analysis() { return analysis; }
     public HistoryService history() { return history; }
     public ConversionService conversion() { return conversion; }

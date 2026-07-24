@@ -14,29 +14,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class App extends Application {
+    private static Stage primaryStage;
+    private static AppContext context;
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        AppContext context = new AppContext();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main-view.fxml"));
-        loader.setControllerFactory(context::createController);
-        Scene scene = new Scene(loader.load(), 1200, 720);
-        scene.getStylesheets().add(getClass().getResource("/css/main.css").toExternalForm());
-
-        stage.setTitle("JD Media Converter");
-        stage.setMinWidth(1100);
-        stage.setMinHeight(680);
-        stage.setScene(scene);
-        stage.getIcons().addAll(loadIcons());
-        if (stage.getIcons().isEmpty()) stage.getIcons().add(AppIcon.create());
+        context = new AppContext();
+        primaryStage = stage;
+        showMainScene();
         stage.centerOnScreen();
         stage.show();
     }
 
-    private List<Image> loadIcons() {
+    private static void showMainScene() throws Exception {
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/main-view.fxml"));
+        loader.setControllerFactory(context::createController);
+        loader.setResources(context.i18n().bundle());
+        Scene scene = new Scene(loader.load(), 1200, 720);
+        scene.getStylesheets().add(App.class.getResource("/css/main.css").toExternalForm());
+
+        primaryStage.setTitle("JD Media Converter");
+        primaryStage.setMinWidth(1100);
+        primaryStage.setMinHeight(680);
+        primaryStage.setScene(scene);
+        if (primaryStage.getIcons().isEmpty()) primaryStage.getIcons().addAll(loadIcons());
+        if (primaryStage.getIcons().isEmpty()) primaryStage.getIcons().add(AppIcon.create());
+    }
+
+    public static void reloadForLanguage() {
+        try { showMainScene(); }
+        catch (Exception exception) { throw new IllegalStateException("Could not reload the user interface", exception); }
+    }
+
+    private static List<Image> loadIcons() {
         List<Image> icons = new ArrayList<>();
 
         for (String resourcePath : List.of(
@@ -46,7 +59,7 @@ public class App extends Application {
                 "/images/app-icon-128.png",
                 "/images/app-icon.jpg",
                 "/images/app-icon.jpeg")) {
-            URL resource = getClass().getResource(resourcePath);
+            URL resource = App.class.getResource(resourcePath);
             if (resource != null) {
                 try {
                     icons.add(new Image(resource.toExternalForm()));

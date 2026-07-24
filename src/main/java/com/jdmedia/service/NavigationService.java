@@ -19,6 +19,7 @@ public final class NavigationService {
     public void show(String view) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/" + view));
+            loader.setResources(context.i18n().bundle());
             loader.setControllerFactory(type -> context.createController(type));
             Node node = loader.load();
             contentPane.getChildren().setAll(node);

@@ -11,6 +11,7 @@ C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\controller\Sett
 C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\controller\StatusBarController.java
 C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\controller\SummaryController.java
 C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\Launcher.java
+C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\model\AppLanguage.java
 C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\model\AppSettings.java
 C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\model\ConversionOptions.java
 C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\model\ConversionPreset.java
@@ -23,10 +24,13 @@ C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\service\AppCont
 C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\service\ConversionService.java
 C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\service\FfmpegInstallationService.java
 C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\service\HistoryService.java
+C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\service\LocalizationService.java
 C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\service\MediaAnalysisService.java
 C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\service\NavigationService.java
 C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\service\SettingsService.java
 C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\service\StatusService.java
+C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\service\TaskbarProgressService.java
+C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\service\UpdateService.java
 C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\ui\AppIcon.java
 C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\ui\components\MediaCard.java
 C:\Programas utiles\jd-media-converter\src\main\java\com\jdmedia\util\BundledToolLocator.java
