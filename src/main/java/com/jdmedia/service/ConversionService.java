@@ -68,13 +68,13 @@ public final class ConversionService {
         boolean classic = "classic".equals(options.preset());
         if (options.convertHdrToSdr()) {
             command.addAll(List.of("-vf","zscale=t=linear:npl=100,format=gbrpf32le,tonemap=hable:desat=0,zscale=p=bt709:t=bt709:m=bt709:r=tv,format=yuv420p","-color_primaries","bt709","-color_trc","bt709","-colorspace","bt709"));
-            if (nvenc && classic) command.addAll(List.of("-c:v","hevc_nvenc","-preset","p5","-rc","vbr","-cq",String.valueOf(options.crf()),"-b:v","0"));
+            if (nvenc && classic) command.addAll(List.of("-c:v","h264_nvenc","-preset","p5","-rc","constqp","-qp",String.valueOf(options.crf())));
             else if (nvenc) command.addAll(List.of("-c:v","h264_nvenc","-preset","p4","-rc","constqp","-qp",String.valueOf(options.crf())));
             else command.addAll(List.of("-c:v","libx264","-preset",options.preset(),"-crf",String.valueOf(options.crf())));
-        } else if (nvenc && classic) command.addAll(List.of("-vf","scale_cuda=-2:min(720\\,ih):format=nv12","-c:v","hevc_nvenc","-preset","p5","-rc","vbr","-cq",String.valueOf(options.crf()),"-b:v","0"));
+        } else if (nvenc && classic) command.addAll(List.of("-vf","scale_cuda=-2:min(720\\,ih):format=nv12","-c:v","h264_nvenc","-preset","p5","-rc","constqp","-qp",String.valueOf(options.crf())));
         else if (nvenc) command.addAll(List.of("-vf","scale_cuda=-2:1080:format=nv12","-c:v","h264_nvenc","-preset","p4","-rc","constqp","-qp",String.valueOf(options.crf())));
         else command.addAll(List.of("-c:v","libx264","-preset",options.preset(),"-crf",String.valueOf(options.crf()),"-vf","scale=-2:1080","-pix_fmt","yuv420p"));
-        command.addAll(List.of("-c:a","aac","-b:a",classic ? "96k" : "192k","-ac","2","-movflags","+faststart",target.toString())); return command;
+        command.addAll(List.of("-tag:v","avc1","-c:a","aac","-b:a",classic ? "96k" : "192k","-ac","2","-movflags","+faststart","-brand","mp42","-f","mp4",target.toString())); return command;
     }
     private boolean isMp4TextSubtitle(StreamInfo subtitle) { return Set.of("subrip","srt","ass","ssa","webvtt","mov_text").contains(subtitle.codec().toLowerCase()); }
     private String stripExtension(String name) { int dot = name.lastIndexOf('.'); return dot < 0 ? name : name.substring(0,dot); }

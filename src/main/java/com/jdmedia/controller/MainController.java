@@ -28,12 +28,13 @@ public final class MainController {
     }
     private void checkUpdates() {
         Task<java.util.Optional<UpdateService.Release>> task=new Task<>() { @Override protected java.util.Optional<UpdateService.Release> call(){return context.updates().latestRelease();} };
-        task.setOnSucceeded(event -> task.getValue().ifPresent(this::showUpdate)); new Thread(task,"update-check").start();
+        task.setOnSucceeded(event -> task.getValue().filter(release -> !release.version().equals(context.settings().get().dismissedUpdateVersion)).ifPresent(this::showUpdate)); new Thread(task,"update-check").start();
     }
     private void showUpdate(UpdateService.Release release) {
         Alert alert=new Alert(Alert.AlertType.INFORMATION,"Hay una nueva versión disponible.\n\nVersión actual: " + context.updates().currentVersion() + "\nNueva versión: " + release.version(),ButtonType.YES,ButtonType.NO);
         alert.setTitle("Actualización disponible"); alert.setHeaderText("JD Media Converter " + release.version());
         ButtonType download=new ButtonType("Descargar"); ButtonType later=new ButtonType("Más tarde"); alert.getButtonTypes().setAll(download,later);
         if(alert.showAndWait().orElse(later)==download)try{Desktop.getDesktop().browse(URI.create(release.url()));}catch(Exception ignored){}
+        else { context.settings().get().dismissedUpdateVersion=release.version(); context.settings().save(); }
     }
 }

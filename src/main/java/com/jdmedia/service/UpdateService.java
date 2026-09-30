@@ -11,7 +11,7 @@ import java.util.Optional;
 
 /** Checks GitHub Releases without downloading or installing anything automatically. */
 public final class UpdateService {
-    private static final String CURRENT_VERSION = "1.0.0";
+    private static final String CURRENT_VERSION = "1.1.0";
     private static final URI LATEST_RELEASE = URI.create("https://api.github.com/repos/Jplamec/jd-media-converter/releases/latest");
     public Optional<Release> latestRelease() {
         try {
