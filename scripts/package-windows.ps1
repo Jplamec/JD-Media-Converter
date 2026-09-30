@@ -5,6 +5,9 @@ $jpackage = Join-Path $JdkHome "bin\jpackage.exe"
 if (-not (Test-Path $jpackage)) { throw "No se encontró jpackage.exe en JAVA_HOME." }
 
 $ErrorActionPreference = "Stop"
+[xml]$pom = Get-Content -Raw "pom.xml"
+$AppVersion = $pom.project.version
+if ([string]::IsNullOrWhiteSpace($AppVersion)) { throw "No se pudo leer la versión de pom.xml." }
 New-Item -ItemType Directory -Force -Path "build" | Out-Null
 
 # Icono ICO para el instalador y los accesos directos de Windows.
@@ -19,5 +22,6 @@ $stream = [System.IO.File]::Open("build\jd-media-converter.ico", [System.IO.File
 $icon.Save($stream); $stream.Close(); $graphics.Dispose(); $brush.Dispose(); $bitmap.Dispose()
 
 mvn clean package dependency:copy-dependencies "-DincludeScope=runtime" "-DoutputDirectory=target\app"
-Copy-Item "target\jd-media-converter-1.0.0.jar" "target\app\" -Force
-& $jpackage --type exe --name "JD Media Converter" --app-version "1.0.0" --vendor "Jplamec" --input "target\app" --main-jar "jd-media-converter-1.0.0.jar" --main-class "com.jdmedia.App" --dest "dist" --icon "build\jd-media-converter.ico" --win-dir-chooser --win-menu --win-shortcut
+$mainJar = "jd-media-converter-$AppVersion.jar"
+Copy-Item "target\$mainJar" "target\app\" -Force
+& $jpackage --type exe --name "JD Media Converter" --app-version $AppVersion --vendor "Jplamec" --input "target\app" --main-jar $mainJar --main-class "com.jdmedia.App" --dest "dist" --icon "build\jd-media-converter.ico" --win-dir-chooser --win-menu --win-shortcut
